@@ -19,7 +19,7 @@ class Drinks {
 
 List<Drinks> drinks = [
   Drinks(
-      nama: "Cappucino",
+      nama: "Cappurrrcino",
       tipe: 'Panas',
       shortdesc: "Kopi susu khas Italia",
       desc:
@@ -28,7 +28,7 @@ List<Drinks> drinks = [
       rate: 5,
       price: 25000),
   Drinks(
-      nama: "Mocatchino",
+      nama: "Meowcatchino",
       tipe: 'Panas',
       shortdesc: "Kopi dengan susu dan cokelat",
       desc:
@@ -46,7 +46,7 @@ List<Drinks> drinks = [
       rate: 5,
       price: 22000),
   Drinks(
-      nama: "Esspreso",
+      nama: "Catspresso",
       tipe: 'Panas',
       shortdesc: "Ekstrak kopi panas dari biji kopi pilihan",
       desc:
@@ -55,7 +55,7 @@ List<Drinks> drinks = [
       rate: 5,
       price: 15000),
   Drinks(
-      nama: "Americatno",
+      nama: "Ameowricatno",
       tipe: 'Panas',
       shortdesc: "Kopi hitam dengan air panas",
       desc:

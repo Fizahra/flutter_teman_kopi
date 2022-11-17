@@ -1,0 +1,22 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_teman_kopi/gallery_item/indoor_gallery_item.dart';
+import 'package:flutter_teman_kopi/model/cat_model.dart';
+
+class IndoorGallery extends StatelessWidget {
+  const IndoorGallery({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 5, right: 5),
+      child: GridView.builder(
+        itemCount: myCat.length,
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemBuilder: (context, int key) {
+          return IndoorGalleryItem(index: key);
+        },
+      ),
+    );
+  }
+}

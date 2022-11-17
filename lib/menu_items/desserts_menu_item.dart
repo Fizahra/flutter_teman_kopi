@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_teman_kopi/model/desserts_model.dart';
-import 'package:flutter_teman_kopi/pages/menu_data_pages/desserts_detail_page.dart';
+import 'package:flutter_teman_kopi/pages/detail_pages/desserts_detail_page.dart';
 
 class DessertsMenuItem extends StatelessWidget {
   final int index;
