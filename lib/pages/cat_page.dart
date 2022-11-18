@@ -10,62 +10,12 @@ class CatPage extends StatefulWidget {
 }
 
 class _CatPageState extends State<CatPage> {
-  final List<Image> myCat = [
-    const Image(
-      image: AssetImage('assets/image/Cat1.jpg'),
-      fit: BoxFit.cover,
-    ),
-    const Image(
-      image: AssetImage('assets/image/Cat2.jpg'),
-      fit: BoxFit.cover,
-    ),
-    const Image(
-      image: AssetImage('assets/image/Cat3.jpg'),
-      fit: BoxFit.cover,
-    ),
-    const Image(
-      image: AssetImage('assets/image/Cat4.jpg'),
-      fit: BoxFit.cover,
-    ),
-    const Image(
-      image: AssetImage('assets/image/Cat5.jpg'),
-      fit: BoxFit.cover,
-    ),
-    const Image(
-      image: AssetImage('assets/image/Cat6.jpg'),
-      fit: BoxFit.cover,
-    ),
-    const Image(
-      image: AssetImage('assets/image/Cat7.jpg'),
-      fit: BoxFit.cover,
-    ),
-    const Image(
-      image: AssetImage('assets/image/Cat8.jpg'),
-      fit: BoxFit.cover,
-    ),
-    const Image(
-      image: AssetImage('assets/image/Cat9.jpg'),
-      fit: BoxFit.cover,
-    ),
-    const Image(
-      image: AssetImage('assets/image/Cat10.jpg'),
-      fit: BoxFit.cover,
-    ),
-    const Image(
-      image: AssetImage('assets/image/Cat11.jpg'),
-      fit: BoxFit.cover,
-    ),
-    const Image(
-      image: AssetImage('assets/image/Cat12.jpg'),
-      fit: BoxFit.cover,
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(children: <Widget>[
           Stack(
@@ -118,7 +68,7 @@ class _CatPageState extends State<CatPage> {
             offset: Offset(0.0, -(height * 0.3 - height * 0.26)),
             child: Container(
               width: width,
-              height: 570,
+              height: 550,
               padding: const EdgeInsets.only(top: 5),
               decoration: const BoxDecoration(
                 color: Colors.white,

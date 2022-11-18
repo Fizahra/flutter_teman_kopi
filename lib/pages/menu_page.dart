@@ -17,6 +17,7 @@ class _MenuPageState extends State<MenuPage> {
     double width = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(children: <Widget>[
           Stack(
