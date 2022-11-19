@@ -14,88 +14,156 @@ class ResultRegistPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.person,
-              size: 80,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Text(
-              'Informasi Pribadi Milikmu',
-              style: TextStyle(
-                  color: Color.fromARGB(255, 153, 109, 93),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            // ignore: prefer_const_constructors
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Nama Lengkap : $nama',
-                style: const TextStyle(
-                    color: Color.fromARGB(255, 153, 109, 93), fontSize: 13),
-                textAlign: TextAlign.center,
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(children: <Widget>[
+          Stack(
+            children: <Widget>[
+              Container(
+                height: height * 0.3,
+                width: width,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/image/header5.jpg'),
+                        fit: BoxFit.cover)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                      Colors.black.withOpacity(0.1),
+                      Colors.black.withOpacity(0.05),
+                      Colors.black.withOpacity(0.05),
+                      Colors.black.withOpacity(0.05),
+                      Colors.black.withOpacity(0.2),
+                    ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 80,
+                left: 40,
+                child: RichText(
+                  text: const TextSpan(
+                      text: "Cafe Kucing",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 153, 109, 93),
+                        fontWeight: FontWeight.w300,
+                        fontSize: 22,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: "\nTeman Kopi!",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 153, 109, 93),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 24,
+                          ),
+                        )
+                      ]),
+                ),
+              ),
+              Positioned(
+                left: 17,
+                top: height * 0.06,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Icon(
+                    Icons.keyboard_backspace,
+                    size: 42,
+                    color: Color.fromARGB(255, 153, 109, 93),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Transform.translate(
+            offset: Offset(0.0, -(height * 0.3 - height * 0.26)),
+            child: Container(
+              width: width,
+              height: 530,
+              padding: const EdgeInsets.only(top: 5),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)),
+              ),
+              child: Column(
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  const Text(
+                    'Informasi Pribadimu',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 153, 109, 93),
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 150,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(right: 20, left: 20),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Nama Lengkap : $nama",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 153, 109, 93),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w900),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Email : $email",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 153, 109, 93),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w900),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Tanggal Lahir : $tanggal",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 153, 109, 93),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w900),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Waktu Nongkrong : $waktu",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 153, 109, 93),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w900),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Email : $email',
-                style: const TextStyle(
-                    color: Color.fromARGB(255, 153, 109, 93), fontSize: 13),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Tanggal Lahir : $tanggal',
-                style: const TextStyle(
-                    color: Color.fromARGB(255, 153, 109, 93), fontSize: 13),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Waktu Nongkrong : $waktu',
-                style: const TextStyle(
-                    color: Color.fromARGB(255, 153, 109, 93), fontSize: 13),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              // ignore: sort_child_properties_last
-              child: const Text(
-                'Kembali',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
-              ),
-              style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll<Color>(
-                Color.fromARGB(255, 153, 109, 93),
-              )),
-            ),
-          ],
-        ),
+          ),
+        ]),
       ),
     );
   }

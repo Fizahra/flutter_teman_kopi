@@ -30,7 +30,6 @@ class _MainPageState extends State<MainPage> {
         child: PageView(
           controller: _pageController,
           onPageChanged: (index) => setState(() => _currentIndex = index),
-          // ignore: prefer_const_literals_to_create_immutables
           children: [
             const RegisterPage(),
             const RulesPage(),
