@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/tabs/indoor_gallery.dart';
-import 'package:flutter_teman_kopi/tabs/outdoor_gallery.dart';
+import 'package:flutter_teman_kopi/pages/tabs/indoor_gallery.dart';
+import 'package:flutter_teman_kopi/pages/tabs/outdoor_gallery.dart';
 
 class CatPage extends StatefulWidget {
   const CatPage({super.key});

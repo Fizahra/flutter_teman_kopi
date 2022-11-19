@@ -4,7 +4,8 @@ import 'package:flutter_teman_kopi/pages/detail_pages/others_detail_page.dart';
 
 class OthersMenuItem extends StatelessWidget {
   final int index;
-  const OthersMenuItem({super.key, required this.index});
+  final Others itemo;
+  const OthersMenuItem({super.key, required this.index, required this.itemo});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class OthersMenuItem extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
-                        others[index].image,
+                        itemo.image,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -48,7 +49,7 @@ class OthersMenuItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      others[index].nama,
+                      itemo.nama,
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold),
                     ),
@@ -56,7 +57,7 @@ class OthersMenuItem extends StatelessWidget {
                       height: 6,
                     ),
                     Text(
-                      others[index].shortdesc,
+                      itemo.shortdesc,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey[500],
@@ -67,7 +68,7 @@ class OthersMenuItem extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      'Rp. ${others[index].price}',
+                      'Rp. ${itemo.price}',
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

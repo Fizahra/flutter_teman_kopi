@@ -1,24 +1,50 @@
 class Desserts {
-  Desserts(
-      {required this.nama,
-      required this.tipe,
-      required this.desc,
-      required this.shortdesc,
-      required this.image,
-      required this.rate,
-      required this.price});
+  Desserts({
+    required this.id,
+    required this.nama,
+    required this.tipe,
+    required this.shortdesc,
+    required this.desc,
+    required this.image,
+    required this.rate,
+    required this.price,
+  });
 
-  final String desc;
-  final String image;
-  final String nama;
-  final int price;
-  final int rate;
-  final String shortdesc;
-  final String tipe;
+  int id;
+  String nama;
+  String tipe;
+  String shortdesc;
+  String desc;
+  String image;
+  int rate;
+  int price;
+
+  factory Desserts.fromJson(Map<String, dynamic> json) => Desserts(
+        id: json["id"],
+        nama: json["nama"],
+        tipe: json["tipe"],
+        shortdesc: json["shortdesc"],
+        desc: json["desc"],
+        image: json["image"],
+        rate: json["rate"],
+        price: json["price"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "nama": nama,
+        "tipe": tipe,
+        "shortdesc": shortdesc,
+        "desc": desc,
+        "image": image,
+        "rate": rate,
+        "price": price,
+      };
 }
 
-List<Desserts> desserts = [
+final desserts = <Desserts>[
   Desserts(
+      id: 1,
       nama: "Cheesecake",
       tipe: 'Cake',
       shortdesc: "Kue keju khas Amerika",
@@ -28,6 +54,7 @@ List<Desserts> desserts = [
       rate: 5,
       price: 35000),
   Desserts(
+      id: 2,
       nama: "Chocolate cake",
       tipe: 'Cake',
       shortdesc: "Kue cokelat dengan cokelat premium",
@@ -37,6 +64,7 @@ List<Desserts> desserts = [
       rate: 5,
       price: 35000),
   Desserts(
+      id: 3,
       nama: "Pancake",
       tipe: 'Cake',
       shortdesc: "Kue dadar untuk sarapan",
@@ -46,6 +74,7 @@ List<Desserts> desserts = [
       rate: 5,
       price: 25000),
   Desserts(
+      id: 4,
       nama: "Red Velvet",
       tipe: 'Cake',
       shortdesc: "Kue cokelat merah dengan krim keju",
@@ -55,6 +84,7 @@ List<Desserts> desserts = [
       rate: 5,
       price: 35000),
   Desserts(
+      id: 5,
       nama: "Strawberry Cake",
       tipe: 'Cake',
       shortdesc: "Kue krim stoberi",
@@ -64,6 +94,7 @@ List<Desserts> desserts = [
       rate: 5,
       price: 35000),
   Desserts(
+      id: 6,
       nama: "Waffle",
       tipe: 'Cake',
       shortdesc: "Sajian khas untuk sarapan dari Belgia",

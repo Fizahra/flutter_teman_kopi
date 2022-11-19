@@ -4,7 +4,8 @@ import 'package:flutter_teman_kopi/pages/detail_pages/drinks_detail_page.dart';
 
 class DrinksMenuItem extends StatelessWidget {
   final int index;
-  const DrinksMenuItem({super.key, required this.index});
+  final Drinks item;
+  const DrinksMenuItem({super.key, required this.index, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class DrinksMenuItem extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
-                        drinks[index].image,
+                        item.image,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -45,7 +46,7 @@ class DrinksMenuItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            drinks[index].nama,
+                            item.nama,
                             style: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
@@ -53,7 +54,7 @@ class DrinksMenuItem extends StatelessWidget {
                             height: 6,
                           ),
                           Text(
-                            drinks[index].shortdesc,
+                            item.shortdesc,
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.grey[500],
@@ -64,7 +65,7 @@ class DrinksMenuItem extends StatelessWidget {
                             height: 20,
                           ),
                           Text(
-                            'Rp. ${drinks[index].price}',
+                            'Rp. ${item.price}',
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,

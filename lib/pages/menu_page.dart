@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_teman_kopi/model/desserts_model.dart';
 import 'package:flutter_teman_kopi/model/drinks_model.dart';
-import 'package:flutter_teman_kopi/tabs/desserts_tab.dart';
-import 'package:flutter_teman_kopi/tabs/drinks_tab.dart';
-import 'package:flutter_teman_kopi/tabs/others_tab.dart';
+import 'package:flutter_teman_kopi/model/others_model.dart';
+import 'package:flutter_teman_kopi/pages/tabs/desserts_tab.dart';
+import 'package:flutter_teman_kopi/pages/tabs/drinks_tab.dart';
+import 'package:flutter_teman_kopi/pages/tabs/others_tab.dart';
 import 'package:flutter_teman_kopi/widget/search_widget.dart';
+import 'package:flutter/material.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -14,12 +16,16 @@ class MenuPage extends StatefulWidget {
 
 class _MenuPageState extends State<MenuPage> {
   late List<Drinks> sdrink;
+  late List<Desserts> sdessert;
+  late List<Others> mother;
   String query = '';
 
   @override
   void initState() {
     super.initState();
     sdrink = drinks;
+    sdessert = desserts;
+    mother = others;
   }
 
   @override
@@ -35,9 +41,25 @@ class _MenuPageState extends State<MenuPage> {
         return titleLower.contains(searchLower);
       }).toList();
 
+      final sdessert = desserts.where((des) {
+        final titleLower = des.nama.toLowerCase();
+        final searchLower = query.toLowerCase();
+
+        return titleLower.contains(searchLower);
+      }).toList();
+
+      final mother = others.where((oth) {
+        final titleLower = oth.nama.toLowerCase();
+        final searchLower = query.toLowerCase();
+
+        return titleLower.contains(searchLower);
+      }).toList();
+
       setState(() {
         this.query = query;
         this.sdrink = sdrink;
+        this.sdessert = sdessert;
+        this.mother = mother;
       });
     }
 
@@ -138,38 +160,20 @@ class _MenuPageState extends State<MenuPage> {
                           height: 5,
                         ),
                         buildSearch(),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(
-                        //       left: 20, right: 20, bottom: 10),
-                        //   child: TextField(
-                        //       decoration: InputDecoration(
-                        //           contentPadding:
-                        //               const EdgeInsets.symmetric(vertical: 3),
-                        //           prefixIcon: const Padding(
-                        //             padding: EdgeInsets.only(
-                        //               left: 15,
-                        //               right: 15,
-                        //             ),
-                        //             child: Icon(
-                        //               Icons.search,
-                        //               size: 30,
-                        //             ),
-                        //           ),
-                        //           hintText:
-                        //               "Cari kopi, camilan atau yang lain disini",
-                        //           border: OutlineInputBorder(
-                        //               borderRadius: BorderRadius.circular(30),
-                        //               borderSide: const BorderSide(
-                        //                   color: Colors.grey, width: 1.0)))),
-                        // ),
                         // ignore: sized_box_for_whitespace
                         Container(
                           height: height * 0.6,
-                          child: const TabBarView(
+                          child: TabBarView(
                             children: [
-                              DrinksTab(),
-                              DessertsTab(),
-                              OthersTab(),
+                              DrinksTab(
+                                drinksList: this.sdrink,
+                              ),
+                              DessertsTab(
+                                dessertsList: this.sdessert,
+                              ),
+                              OthersTab(
+                                othersList: this.mother,
+                              ),
                             ],
                           ),
                         )

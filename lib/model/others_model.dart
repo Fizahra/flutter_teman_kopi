@@ -1,24 +1,50 @@
 class Others {
-  Others(
-      {required this.nama,
-      required this.tipe,
-      required this.desc,
-      required this.shortdesc,
-      required this.image,
-      required this.rate,
-      required this.price});
+  Others({
+    required this.id,
+    required this.nama,
+    required this.tipe,
+    required this.shortdesc,
+    required this.desc,
+    required this.image,
+    required this.rate,
+    required this.price,
+  });
 
-  final String desc;
-  final String image;
-  final String nama;
-  final int price;
-  final int rate;
-  final String shortdesc;
-  final String tipe;
+  int id;
+  String nama;
+  String tipe;
+  String shortdesc;
+  String desc;
+  String image;
+  int rate;
+  int price;
+
+  factory Others.fromJson(Map<String, dynamic> json) => Others(
+        id: json["id"],
+        nama: json["nama"],
+        tipe: json["tipe"],
+        shortdesc: json["shortdesc"],
+        desc: json["desc"],
+        image: json["image"],
+        rate: json["rate"],
+        price: json["price"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "nama": nama,
+        "tipe": tipe,
+        "shortdesc": shortdesc,
+        "desc": desc,
+        "image": image,
+        "rate": rate,
+        "price": price,
+      };
 }
 
-List<Others> others = [
+final others = <Others>[
   Others(
+      id: 1,
       nama: "Cat Ball",
       tipe: 'Cat Toy/Sewa',
       shortdesc: "Mainan bola untuk kucing",
@@ -27,6 +53,7 @@ List<Others> others = [
       rate: 4,
       price: 5000),
   Others(
+      id: 2,
       nama: "Catnip Yellyfish",
       tipe: 'Cat Toy/Sewa',
       shortdesc: "Mainan untuk kucing",
@@ -35,6 +62,7 @@ List<Others> others = [
       rate: 5,
       price: 5000),
   Others(
+      id: 3,
       nama: "Felt Mouse",
       tipe: 'Cat Toy/Sewa',
       shortdesc: "Boneka tikus untuk kucing",
@@ -44,6 +72,7 @@ List<Others> others = [
       rate: 5,
       price: 5000),
   Others(
+      id: 4,
       nama: "Laser Pen",
       tipe: 'Cat Toy/Sewa',
       shortdesc: "Mainan laser untuk kucing",

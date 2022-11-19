@@ -1,24 +1,3 @@
-// class Drinks {
-//   Drinks(
-//       {required this.nama,
-//       required this.tipe,
-//       required this.desc,
-//       required this.shortdesc,
-//       required this.image,
-//       required this.rate,
-//       required this.price});
-
-//   final String desc;
-//   final String image;
-//   final String nama;
-//   final int price;
-//   final int rate;
-//   final String shortdesc;
-//   final String tipe;
-// }
-// To parse this JSON data, do
-//
-//     final drinks = drinksFromJson(jsonString);
 class Drinks {
   Drinks({
     required this.id,

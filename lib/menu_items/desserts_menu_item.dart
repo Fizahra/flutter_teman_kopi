@@ -4,7 +4,8 @@ import 'package:flutter_teman_kopi/pages/detail_pages/desserts_detail_page.dart'
 
 class DessertsMenuItem extends StatelessWidget {
   final int index;
-  const DessertsMenuItem({super.key, required this.index});
+  final Desserts itemd;
+  const DessertsMenuItem({super.key, required this.index, required this.itemd});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class DessertsMenuItem extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
-                        desserts[index].image,
+                        itemd.image,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -48,7 +49,7 @@ class DessertsMenuItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      desserts[index].nama,
+                      itemd.nama,
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold),
                     ),
@@ -56,7 +57,7 @@ class DessertsMenuItem extends StatelessWidget {
                       height: 6,
                     ),
                     Text(
-                      desserts[index].shortdesc,
+                      itemd.shortdesc,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey[500],
@@ -67,7 +68,7 @@ class DessertsMenuItem extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      'Rp. ${desserts[index].price}',
+                      'Rp. ${itemd.price}',
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
