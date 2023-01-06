@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/menu_items/drinks_menu_item.dart';
+import 'package:flutter_teman_kopi/items/menu_items/drinks_menu_item.dart';
 import 'package:flutter_teman_kopi/model/drinks_model.dart';
 
 class DrinksTab extends StatelessWidget {
