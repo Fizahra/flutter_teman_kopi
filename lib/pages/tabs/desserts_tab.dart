@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/menu_items/desserts_menu_item.dart';
+import 'package:flutter_teman_kopi/items/menu_items/desserts_menu_item.dart';
 import 'package:flutter_teman_kopi/model/desserts_model.dart';
 
 class DessertsTab extends StatelessWidget {

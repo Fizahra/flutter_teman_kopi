@@ -19,24 +19,24 @@ class _SearchWidgetState extends State<SearchWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final styleAktif = TextStyle(color: Color.fromARGB(255, 153, 109, 93));
-    final styleClue = TextStyle(color: Colors.grey);
+    const styleAktif = TextStyle(color: Color.fromARGB(255, 153, 109, 93));
+    const styleClue = TextStyle(color: Colors.grey);
     final style = widget.text.isEmpty ? styleClue : styleAktif;
 
     return Container(
       height: 42,
-      margin: EdgeInsets.all(16),
-      padding: EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: Colors.white,
-          border: Border.all(color: Color.fromARGB(255, 153, 109, 93))),
+          border: Border.all(color: const Color.fromARGB(255, 153, 109, 93))),
       child: TextField(
         controller: searchController,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.only(top: 5),
           prefixIcon: Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               left: 15,
               right: 15,
             ),

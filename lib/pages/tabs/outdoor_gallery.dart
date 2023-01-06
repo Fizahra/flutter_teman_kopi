@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/gallery_item/outdoor_gallery_item.dart';
+import 'package:flutter_teman_kopi/items/gallery_item/outdoor_gallery_item.dart';
 import 'package:flutter_teman_kopi/model/kucing_model.dart';
 
 class OutdoorGallery extends StatelessWidget {

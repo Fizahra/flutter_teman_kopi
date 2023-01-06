@@ -30,12 +30,12 @@ class _MainPageState extends State<MainPage> {
         child: PageView(
           controller: _pageController,
           onPageChanged: (index) => setState(() => _currentIndex = index),
-          children: [
-            const RegisterPage(),
-            const RulesPage(),
-            const MenuPage(),
-            const CatPage(),
-            const OrderPage(),
+          children: const [
+            RegisterPage(),
+            RulesPage(),
+            MenuPage(),
+            CatPage(),
+            OrderPage(),
           ],
         ),
       ),

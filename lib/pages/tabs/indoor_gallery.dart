@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/gallery_item/indoor_gallery_item.dart';
+import 'package:flutter_teman_kopi/items/gallery_item/indoor_gallery_item.dart';
 import 'package:flutter_teman_kopi/model/cat_model.dart';
 
 class IndoorGallery extends StatelessWidget {
@@ -12,7 +12,7 @@ class IndoorGallery extends StatelessWidget {
       child: GridView.builder(
         itemCount: myCat.length,
         gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (context, int key) {
           return IndoorGalleryItem(index: key);
         },

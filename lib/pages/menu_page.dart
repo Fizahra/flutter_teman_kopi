@@ -166,13 +166,13 @@ class _MenuPageState extends State<MenuPage> {
                           child: TabBarView(
                             children: [
                               DrinksTab(
-                                drinksList: this.sdrink,
+                                drinksList: sdrink,
                               ),
                               DessertsTab(
-                                dessertsList: this.sdessert,
+                                dessertsList: sdessert,
                               ),
                               OthersTab(
-                                othersList: this.mother,
+                                othersList: mother,
                               ),
                             ],
                           ),

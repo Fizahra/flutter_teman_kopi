@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/menu_items/others_menu_item.dart';
+import 'package:flutter_teman_kopi/items/menu_items/others_menu_item.dart';
 import 'package:flutter_teman_kopi/model/others_model.dart';
 
 class OthersTab extends StatelessWidget {

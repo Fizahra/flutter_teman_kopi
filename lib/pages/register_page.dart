@@ -169,11 +169,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                   color: Color.fromARGB(255, 153, 109, 93))),
                           onTap: () {
                             _showDatePicker(context);
-                            if (_selectDate != null) {
-                              setState(() {
-                                _date.text = _dateFormat.format(_selectDate);
-                              });
-                            }
+                            setState(() {
+                              _date.text = _dateFormat.format(_selectDate);
+                            });
                           },
                         ),
                       ),
@@ -205,11 +203,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                   color: Color.fromARGB(255, 153, 109, 93))),
                           onTap: () {
                             _showTimePicker(context);
-                            if (_selectTime != null) {
-                              setState(() {
-                                _time.text = _selectTime.format(context);
-                              });
-                            }
+                            setState(() {
+                              _time.text = _selectTime.format(context);
+                            });
                           },
                         ),
                       ),
