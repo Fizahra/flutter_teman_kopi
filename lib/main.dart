@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_teman_kopi/pages/main_page.dart';
+import 'package:flutter_teman_kopi/presentation/blocs/staff/staff_bloc.dart';
+import 'injector.dart' as di;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(const App());
 }
 
@@ -10,9 +15,17 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MainPage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          // ignore: prefer_const_constructors
+          create: (context) => di.sl<StaffBloc>()..add(StaffFetchEvent()),
+        ),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: MainPage(),
+      ),
     );
   }
 }
