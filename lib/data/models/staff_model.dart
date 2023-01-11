@@ -3,7 +3,7 @@ import 'package:flutter_teman_kopi/domain/entities/staff_entity.dart';
 class StaffModel extends StaffEntity {
   StaffModel.fromJson(Map<String, dynamic> json)
       : super(
-          id: json['ID'],
+          id: json['id'],
           nama: json['nama'],
           posisi: json['posisi'],
           shift: json['shift'],
@@ -11,7 +11,7 @@ class StaffModel extends StaffEntity {
 
   Map<String, dynamic> toJson() => {
         'staff': {
-          'ID': id,
+          'id': id,
           'nama': nama,
           'posisi': posisi,
           'shift': shift,
