@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_teman_kopi/model/cat_model.dart';
-import 'package:flutter_teman_kopi/pages/detail_pages/indoor_gallery_detail.dart';
+
+import '../../presentation/pages/detail_pages/indoor_gallery_detail.dart';
 
 class IndoorGalleryItem extends StatelessWidget {
   final int index;

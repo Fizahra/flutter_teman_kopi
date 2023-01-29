@@ -37,3 +37,5 @@ class StaffErrorState extends StaffState {
   @override
   List<Object?> get props => [];
 }
+
+class StaffRefreshState extends StaffState {}

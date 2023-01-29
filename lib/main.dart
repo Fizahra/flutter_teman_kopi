@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_teman_kopi/pages/main_page.dart';
 import 'package:flutter_teman_kopi/presentation/blocs/staff/staff_bloc.dart';
+import 'package:flutter_teman_kopi/presentation/pages/main_page.dart';
 import 'injector.dart' as di;
 
 void main() async {

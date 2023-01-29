@@ -1,10 +1,11 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/pages/cat_page.dart';
-import 'package:flutter_teman_kopi/pages/menu_page.dart';
-import 'package:flutter_teman_kopi/pages/register_page.dart';
-import 'package:flutter_teman_kopi/pages/rules_page_.dart';
-import 'package:flutter_teman_kopi/pages/staff_page.dart';
+import 'package:flutter_teman_kopi/presentation/pages/register_page.dart';
+import 'package:flutter_teman_kopi/presentation/pages/rules_page_.dart';
+import 'package:flutter_teman_kopi/presentation/pages/staff_page.dart';
+
+import 'cat_page.dart';
+import 'menu_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

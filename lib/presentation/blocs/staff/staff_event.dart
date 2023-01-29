@@ -13,3 +13,5 @@ class StaffFetchEvent extends StaffEvent {
   @override
   List<Object?> get props => [];
 }
+
+class StaffResfreshEvent extends StaffEvent {}

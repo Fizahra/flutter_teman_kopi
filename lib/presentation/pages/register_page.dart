@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/pages/resultsregis_page.dart';
+import 'package:flutter_teman_kopi/presentation/pages/resultsregis_page.dart';
 import 'package:intl/intl.dart';
 
 class RegisterPage extends StatefulWidget {

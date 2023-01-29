@@ -1,11 +1,13 @@
 import 'package:flutter_teman_kopi/model/desserts_model.dart';
 import 'package:flutter_teman_kopi/model/drinks_model.dart';
 import 'package:flutter_teman_kopi/model/others_model.dart';
-import 'package:flutter_teman_kopi/pages/tabs/desserts_tab.dart';
-import 'package:flutter_teman_kopi/pages/tabs/drinks_tab.dart';
-import 'package:flutter_teman_kopi/pages/tabs/others_tab.dart';
-import 'package:flutter_teman_kopi/widget/search_widget.dart';
+
 import 'package:flutter/material.dart';
+
+import '../widget/search_widget.dart';
+import 'tabs/desserts_tab.dart';
+import 'tabs/drinks_tab.dart';
+import 'tabs/others_tab.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
