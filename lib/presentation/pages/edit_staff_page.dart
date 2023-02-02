@@ -3,35 +3,17 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class AddStaffPage extends StatefulWidget {
-  final Map? todo;
-  const AddStaffPage({super.key, this.todo});
+class EditStaffPage extends StatefulWidget {
+  const EditStaffPage({super.key});
 
   @override
-  State<AddStaffPage> createState() => _AddStaffPageState();
+  State<EditStaffPage> createState() => _EditStaffPageState();
 }
 
-class _AddStaffPageState extends State<AddStaffPage> {
+class _EditStaffPageState extends State<EditStaffPage> {
   TextEditingController namaController = TextEditingController();
   TextEditingController shiftController = TextEditingController();
   TextEditingController posisiController = TextEditingController();
-  bool isEdit = false;
-
-  @override
-  void initState() {
-    super.initState();
-    final todo = widget.todo;
-    if (todo != null) {
-      isEdit = true;
-      final nama = todo['nama'];
-      final shift = todo['shift'];
-      final posisi = todo['posisi'];
-      namaController.text = nama;
-      shiftController.text = shift;
-      posisiController.text = posisi;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -46,11 +28,9 @@ class _AddStaffPageState extends State<AddStaffPage> {
                 const SizedBox(
                   height: 80,
                 ),
-                Text(
-                  isEdit
-                      ? 'Edit Data Staff Teman Kopi'
-                      : 'Add Data Staff Teman Kopi',
-                  style: const TextStyle(
+                const Text(
+                  'Data Staff Teman Kopi',
+                  style: TextStyle(
                     color: Color.fromARGB(255, 153, 109, 93),
                     fontWeight: FontWeight.w500,
                     fontSize: 24,
@@ -155,48 +135,15 @@ class _AddStaffPageState extends State<AddStaffPage> {
         ]),
         ElevatedButton(
             onPressed: () {
-              isEdit ? updateData : submitData;
+              submitData;
               Navigator.pop(context);
             },
             style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(
                     Color.fromARGB(255, 153, 109, 93))),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(isEdit ? 'Update' : 'Submit'),
-            )),
+            child: const Text('Submit')),
       ]),
     );
-  }
-
-  Future<void> updateData() async {
-    final todo = widget.todo;
-    if (todo == null) {
-      // ignore: avoid_print
-      print('Cant update');
-      return;
-    }
-    final id = todo['id'];
-    final nama = namaController.text;
-    final posisi = posisiController.text;
-    final shift = shiftController.text;
-    final body = {
-      "nama": nama,
-      "posisi": posisi,
-      "shift": shift,
-    };
-    final url = 'http://10.0.2.2:8080/staff/$id';
-    final uri = Uri.parse(url);
-    final response = await http.put(uri, body: jsonEncode(body));
-
-    if (response.statusCode == 200) {
-      namaController.text = '';
-      posisiController.text = '';
-      shiftController.text = '';
-      showSuccessMessage('Data berhasil diubah');
-    } else {
-      showErrorMessage('Data gagal diubah');
-    }
   }
 
   Future<void> submitData() async {

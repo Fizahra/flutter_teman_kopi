@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_teman_kopi/presentation/blocs/staff/staff_bloc.dart';
 import 'package:flutter_teman_kopi/presentation/pages/add_staff_page.dart';
@@ -12,9 +13,12 @@ class StaffPage extends StatefulWidget {
 }
 
 class _StaffPageState extends State<StaffPage> {
+  bool isLoading = true;
   List data = [];
   @override
   Widget build(BuildContext context) {
+    final staffBloc = BlocProvider.of<StaffBloc>(context);
+    staffBloc.add(const StaffFetchEvent());
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -38,21 +42,18 @@ class _StaffPageState extends State<StaffPage> {
               const SizedBox(
                 height: 20,
               ),
-              Expanded(
-                  child: RefreshIndicator(
-                onRefresh: () async {
-                  final staffBloc = BlocProvider.of<StaffBloc>(context);
-                  staffBloc.add(const StaffFetchEvent());
-                },
-                child: BlocBuilder<StaffBloc, StaffState>(
-                  builder: (context, state) {
-                    if (state is StaffFetchedState) {
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: state.listStaff.length,
-                        itemBuilder: (context, index) {
-                          final id = state.listStaff[index].id;
-                          return ListTile(
+              Expanded(child: BlocBuilder<StaffBloc, StaffState>(
+                builder: (context, state) {
+                  if (state is StaffFetchedState) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(8),
+                      itemCount: state.listStaff.length,
+                      itemBuilder: (context, index) {
+                        final id = state.listStaff[index].id;
+                        final datastaff = state.listStaff[index] as Map;
+                        return Card(
+                          child: ListTile(
                             leading: CircleAvatar(
                                 backgroundColor:
                                     const Color.fromARGB(255, 153, 109, 93),
@@ -61,7 +62,7 @@ class _StaffPageState extends State<StaffPage> {
                             subtitle: Text(state.listStaff[index].posisi),
                             trailing: PopupMenuButton(onSelected: (value) {
                               if (value == 'edit') {
-                                //open edit page
+                                navigateEditStaffPage(datastaff);
                               } else if (value == 'delete') {
                                 deleteById(id);
                               }
@@ -77,15 +78,15 @@ class _StaffPageState extends State<StaffPage> {
                                 )
                               ];
                             }),
-                          );
-                        },
-                      );
-                    }
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                          ),
+                        );
+                      },
                     );
-                  },
-                ),
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ))
             ],
           ),
@@ -103,17 +104,47 @@ class _StaffPageState extends State<StaffPage> {
     );
   }
 
+  Future<void> navigateEditStaffPage(Map datastaff) async {
+    final route = MaterialPageRoute(
+      builder: (context) => AddStaffPage(todo: datastaff),
+    );
+    await Navigator.push(context, route);
+    setState(() {
+      isLoading = true;
+    });
+  }
+
+  Future<void> navigateAddStaffPage() async {
+    final route = MaterialPageRoute(
+      builder: (context) => const AddStaffPage(),
+    );
+    await Navigator.push(context, route);
+    setState(() {
+      isLoading = true;
+    });
+    // ignore: use_build_context_synchronously
+    // final staffBloc = BlocProvider.of<StaffBloc>(context);
+    // staffBloc.add(const StaffFetchEvent());
+  }
+
   Future<void> deleteById(id) async {
     final url = 'http://10.0.2.2:8080/staff/$id';
     final uri = Uri.parse(url);
-    final filtered = data.where((element) => element['id'] != id).toList();
-    setState(() {
-      data = filtered;
-    });
-
     final response = await http.delete(uri);
 
     if (response.statusCode == 200) {
+      final filtered = data.where((element) => element['id'] != id).toList();
+      setState(() {
+        data = filtered;
+      });
+      Fluttertoast.showToast(
+          msg: "Data berhasil dihapus!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: const Color.fromARGB(255, 153, 109, 93),
+          backgroundColor: Colors.white,
+          fontSize: 16);
     } else {
       showErrorMessage('Ups! Gagal menghapus data!');
     }
