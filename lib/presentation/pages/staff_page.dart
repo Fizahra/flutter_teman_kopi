@@ -17,8 +17,6 @@ class _StaffPageState extends State<StaffPage> {
   List data = [];
   @override
   Widget build(BuildContext context) {
-    final staffBloc = BlocProvider.of<StaffBloc>(context);
-    staffBloc.add(const StaffFetchEvent());
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -42,51 +40,62 @@ class _StaffPageState extends State<StaffPage> {
               const SizedBox(
                 height: 20,
               ),
-              Expanded(child: BlocBuilder<StaffBloc, StaffState>(
-                builder: (context, state) {
-                  if (state is StaffFetchedState) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.all(8),
-                      itemCount: state.listStaff.length,
-                      itemBuilder: (context, index) {
-                        final id = state.listStaff[index].id;
-                        final datastaff = state.listStaff[index] as Map;
-                        return Card(
-                          child: ListTile(
-                            leading: CircleAvatar(
-                                backgroundColor:
-                                    const Color.fromARGB(255, 153, 109, 93),
-                                child: Text('${index + 1}')),
-                            title: Text(state.listStaff[index].nama),
-                            subtitle: Text(state.listStaff[index].posisi),
-                            trailing: PopupMenuButton(onSelected: (value) {
-                              if (value == 'edit') {
-                                navigateEditStaffPage(datastaff);
-                              } else if (value == 'delete') {
-                                deleteById(id);
-                              }
-                            }, itemBuilder: (context) {
-                              return [
-                                const PopupMenuItem(
-                                  value: 'edit',
-                                  child: Text('Ubah'),
-                                ),
-                                const PopupMenuItem(
-                                  value: 'delete',
-                                  child: Text('Hapus'),
-                                )
-                              ];
-                            }),
-                          ),
-                        );
-                      },
-                    );
-                  }
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+              Expanded(
+                  child: RefreshIndicator(
+                onRefresh: () async {
+                  final staffBloc = BlocProvider.of<StaffBloc>(context);
+                  staffBloc.add(const StaffFetchEvent());
                 },
+                child: BlocBuilder<StaffBloc, StaffState>(
+                  builder: (context, state) {
+                    if (state is StaffFetchedState) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.all(8),
+                        itemCount: state.listStaff.length,
+                        itemBuilder: (context, index) {
+                          final id = state.listStaff[index].id;
+                          final ids = id.toString();
+                          final nama = state.listStaff[index].nama;
+                          final posisi = state.listStaff[index].posisi;
+                          final shift = state.listStaff[index].shift;
+                          final datastaff = [ids, nama, posisi, shift].toList();
+                          return Card(
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 153, 109, 93),
+                                  child: Text('${index + 1}')),
+                              title: Text(nama),
+                              subtitle: Text(posisi),
+                              trailing: PopupMenuButton(onSelected: (value) {
+                                if (value == 'edit') {
+                                  navigateEditStaffPage(datastaff);
+                                } else if (value == 'delete') {
+                                  deleteById(id);
+                                }
+                              }, itemBuilder: (context) {
+                                return [
+                                  const PopupMenuItem(
+                                    value: 'edit',
+                                    child: Text('Ubah'),
+                                  ),
+                                  const PopupMenuItem(
+                                    value: 'delete',
+                                    child: Text('Hapus'),
+                                  )
+                                ];
+                              }),
+                            ),
+                          );
+                        },
+                      );
+                    }
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                ),
               ))
             ],
           ),
@@ -104,14 +113,12 @@ class _StaffPageState extends State<StaffPage> {
     );
   }
 
-  Future<void> navigateEditStaffPage(Map datastaff) async {
-    final route = MaterialPageRoute(
-      builder: (context) => AddStaffPage(todo: datastaff),
-    );
-    await Navigator.push(context, route);
-    setState(() {
-      isLoading = true;
-    });
+  navigateEditStaffPage(datastaff) {
+    Navigator.of(context).popAndPushNamed('/edit', arguments: datastaff);
+    // setState(() {
+    //   isLoading = true;
+    // });
+    // ignore: use_build_context_synchronously
   }
 
   Future<void> navigateAddStaffPage() async {
@@ -123,8 +130,7 @@ class _StaffPageState extends State<StaffPage> {
       isLoading = true;
     });
     // ignore: use_build_context_synchronously
-    // final staffBloc = BlocProvider.of<StaffBloc>(context);
-    // staffBloc.add(const StaffFetchEvent());
+    BlocProvider.of<StaffBloc>(context).add(const StaffFetchEvent());
   }
 
   Future<void> deleteById(id) async {

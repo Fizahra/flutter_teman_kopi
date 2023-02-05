@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/model/others_model.dart';
+import 'package:flutter_teman_kopi/data/data_sources/local/model/others_model.dart';
 
-import '../../presentation/pages/detail_pages/others_detail_page.dart';
+import '../../pages/detail_pages/others_detail_page.dart';
 
 class OthersMenuItem extends StatelessWidget {
   final int index;

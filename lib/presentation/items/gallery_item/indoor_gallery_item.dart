@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/model/kucing_model.dart';
+import 'package:flutter_teman_kopi/data/data_sources/local/model/cat_model.dart';
 
-import '../../presentation/pages/detail_pages/outdoor_gallery_detail.dart';
+import '../../pages/detail_pages/indoor_gallery_detail.dart';
 
-class OutdoorGalleryItem extends StatelessWidget {
+class IndoorGalleryItem extends StatelessWidget {
   final int index;
-  const OutdoorGalleryItem({super.key, required this.index});
+  const IndoorGalleryItem({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +14,12 @@ class OutdoorGalleryItem extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => OutdoorGalleryDetail(
+                builder: (context) => IndoorGalleryDetail(
                       index: index,
                     )));
       },
       child: Image.asset(
-        kucingKu[index].image,
+        myCat[index].image,
         fit: BoxFit.cover,
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/model/kucing_model.dart';
+import 'package:flutter_teman_kopi/data/data_sources/local/model/kucing_model.dart';
 
 class OutdoorGalleryDetail extends StatefulWidget {
   final int index;

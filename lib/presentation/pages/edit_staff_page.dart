@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_teman_kopi/presentation/pages/staff_page.dart';
 import 'package:http/http.dart' as http;
 
 class EditStaffPage extends StatefulWidget {
@@ -14,9 +15,21 @@ class _EditStaffPageState extends State<EditStaffPage> {
   TextEditingController namaController = TextEditingController();
   TextEditingController shiftController = TextEditingController();
   TextEditingController posisiController = TextEditingController();
+  bool isEdit = false;
+
   @override
   Widget build(BuildContext context) {
+    final staff = ModalRoute.of(context)!.settings.arguments as List<String>;
     double height = MediaQuery.of(context).size.height;
+    if (staff[1].isNotEmpty) {
+      namaController.text = staff[1];
+    }
+    if (staff[2].isNotEmpty) {
+      posisiController.text = staff[2];
+    }
+    if (staff[3].isNotEmpty) {
+      shiftController.text = staff[3];
+    }
     return Scaffold(
       body: Column(children: [
         Stack(children: [
@@ -29,7 +42,7 @@ class _EditStaffPageState extends State<EditStaffPage> {
                   height: 80,
                 ),
                 const Text(
-                  'Data Staff Teman Kopi',
+                  'Edit Data Staff Teman Kopi',
                   style: TextStyle(
                     color: Color.fromARGB(255, 153, 109, 93),
                     fontWeight: FontWeight.w500,
@@ -78,7 +91,6 @@ class _EditStaffPageState extends State<EditStaffPage> {
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextField(
                         controller: posisiController,
-                        keyboardType: TextInputType.emailAddress,
                         style: const TextStyle(
                             color: Color.fromARGB(255, 153, 109, 93)),
                         decoration: const InputDecoration(
@@ -105,7 +117,6 @@ class _EditStaffPageState extends State<EditStaffPage> {
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextField(
                         controller: shiftController,
-                        keyboardType: TextInputType.emailAddress,
                         style: const TextStyle(
                             color: Color.fromARGB(255, 153, 109, 93)),
                         decoration: const InputDecoration(
@@ -126,47 +137,69 @@ class _EditStaffPageState extends State<EditStaffPage> {
             top: height * 0.08,
             child: GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => const StaffPage())));
               },
               child: const Icon(Icons.keyboard_backspace,
                   size: 42, color: Color.fromARGB(255, 153, 109, 93)),
             ),
           ),
         ]),
+        const SizedBox(
+          height: 20,
+        ),
         ElevatedButton(
             onPressed: () {
-              submitData;
-              Navigator.pop(context);
+              updateData(int.parse(staff[0]), namaController.text,
+                  posisiController.text, shiftController.text);
             },
             style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(
                     Color.fromARGB(255, 153, 109, 93))),
-            child: const Text('Submit')),
+            child: const Padding(
+              padding: EdgeInsets.fromLTRB(35, 15, 35, 15),
+              child: Text('Update'),
+            )),
       ]),
     );
   }
 
-  Future<void> submitData() async {
-    final nama = namaController.text;
-    final posisi = posisiController.text;
-    final shift = shiftController.text;
-    final body = {
-      "nama": nama,
-      "posisi": posisi,
-      "shift": shift,
-    };
-    const url = 'http://10.0.2.2:8080/staff/';
+  Future<void> updateData(
+      int id, String nama, String posisi, String shift) async {
+    final url = 'http://10.0.2.2:8080/staff/$id';
     final uri = Uri.parse(url);
-    final response = await http.post(uri, body: jsonEncode(body));
-
-    if (response.statusCode == 200) {
-      namaController.text = '';
-      posisiController.text = '';
-      shiftController.text = '';
-      showSuccessMessage('Data berhasil ditambahkan');
-    } else {
-      showErrorMessage('Data gagal ditambahkan');
+    try {
+      final body = {
+        "nama": nama,
+        "posisi": posisi,
+        "shift": shift,
+      };
+      final response = await http.put(uri, body: jsonEncode(body));
+      if (response.statusCode == 201) {
+        showSuccessMessage('Data berhasil diubah');
+      } else {
+        showErrorMessage('Data gagal diubah');
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print(e.toString());
     }
+    // final id = staff['id'];
+    // final nama = namaController.text;
+    // final posisi = posisiController.text;
+    // final shift = shiftController.text;
+    //
+    // final url = 'http://10.0.2.2:8080/staff/$id';
+    // final uri = Uri.parse(url);
+    // final response = await http.put(uri, body: jsonEncode(body));
+
+    // if (response.statusCode == 200) {
+    //   showSuccessMessage('Data berhasil diubah');
+    // } else {
+    //   showErrorMessage('Data gagal diubah');
+    // }
   }
 
   void showSuccessMessage(String message) {

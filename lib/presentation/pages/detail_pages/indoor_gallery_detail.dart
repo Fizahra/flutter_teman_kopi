@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/model/cat_model.dart';
+import 'package:flutter_teman_kopi/data/data_sources/local/model/cat_model.dart';
 
 class IndoorGalleryDetail extends StatefulWidget {
   final int index;

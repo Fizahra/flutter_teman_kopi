@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/model/others_model.dart';
+import 'package:flutter_teman_kopi/data/data_sources/local/model/others_model.dart';
 
 class OthersDetailPage extends StatefulWidget {
   final int index;

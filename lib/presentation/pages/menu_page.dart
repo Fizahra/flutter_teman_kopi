@@ -1,6 +1,6 @@
-import 'package:flutter_teman_kopi/model/desserts_model.dart';
-import 'package:flutter_teman_kopi/model/drinks_model.dart';
-import 'package:flutter_teman_kopi/model/others_model.dart';
+import 'package:flutter_teman_kopi/data/data_sources/local/model/desserts_model.dart';
+import 'package:flutter_teman_kopi/data/data_sources/local/model/drinks_model.dart';
+import 'package:flutter_teman_kopi/data/data_sources/local/model/others_model.dart';
 
 import 'package:flutter/material.dart';
 

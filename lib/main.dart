@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_teman_kopi/presentation/blocs/staff/staff_bloc.dart';
+import 'package:flutter_teman_kopi/presentation/pages/add_staff_page.dart';
+import 'package:flutter_teman_kopi/presentation/pages/edit_staff_page.dart';
 import 'package:flutter_teman_kopi/presentation/pages/main_page.dart';
+import 'package:flutter_teman_kopi/presentation/pages/staff_page.dart';
 import 'injector.dart' as di;
 
 void main() async {
@@ -22,9 +25,14 @@ class App extends StatelessWidget {
           create: (context) => di.sl<StaffBloc>()..add(StaffFetchEvent()),
         ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MainPage(),
+        home: const MainPage(),
+        routes: {
+          '/add': (context) => const AddStaffPage(),
+          '/edit': (context) => const EditStaffPage(),
+          '/staff': (context) => const StaffPage(),
+        },
       ),
     );
   }

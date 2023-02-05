@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/items/menu_items/drinks_menu_item.dart';
-import 'package:flutter_teman_kopi/model/drinks_model.dart';
+import 'package:flutter_teman_kopi/presentation/items/menu_items/drinks_menu_item.dart';
+import 'package:flutter_teman_kopi/data/data_sources/local/model/drinks_model.dart';
 
 class DrinksTab extends StatelessWidget {
   const DrinksTab({super.key, required this.drinksList});

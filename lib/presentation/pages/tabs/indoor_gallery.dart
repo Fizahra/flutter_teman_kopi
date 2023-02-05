@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teman_kopi/items/gallery_item/indoor_gallery_item.dart';
-import 'package:flutter_teman_kopi/model/cat_model.dart';
+import 'package:flutter_teman_kopi/presentation/items/gallery_item/indoor_gallery_item.dart';
+import 'package:flutter_teman_kopi/data/data_sources/local/model/cat_model.dart';
 
 class IndoorGallery extends StatelessWidget {
   const IndoorGallery({super.key});
