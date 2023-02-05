@@ -8,6 +8,14 @@ abstract class StaffRemoteDataSource {
 
 class StaffRemoteDataSourceImpl implements StaffRemoteDataSource {
   final Dio dio;
+  //url localhost untuk emulator android
+  //final String baseUrl = 'http://10.0.2.2:8080/staff';
+
+  //url localhost untuk emulator ios
+  //final String baseUrl = 'http://127.0.0.1:8080/staff';
+
+  //url localhost default(hanya bisa untuk emulator ios)
+  final String baseUrl = 'http://localhost:8080/staff';
 
   StaffRemoteDataSourceImpl({required this.dio});
 
@@ -15,7 +23,7 @@ class StaffRemoteDataSourceImpl implements StaffRemoteDataSource {
   Future<List<StaffModel>> fetch() async {
     try {
       List<StaffModel> listStaff = [];
-      final response = await dio.get('http://10.0.2.2:8080/staff');
+      final response = await dio.get(baseUrl);
       for (var data in response.data['data']) {
         StaffModel staff = StaffModel.fromJson(data);
         listStaff.add(staff);

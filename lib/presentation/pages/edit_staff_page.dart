@@ -168,7 +168,15 @@ class _EditStaffPageState extends State<EditStaffPage> {
 
   Future<void> updateData(
       int id, String nama, String posisi, String shift) async {
-    final url = 'http://10.0.2.2:8080/staff/$id';
+    //url localhost untuk emulator android
+    //final url = 'http://10.0.2.2:8080/staff/$id';
+
+    //url localhost untuk emulator ios
+    //final url = 'http://127.0.0.1:8080/staff/$id';
+
+    //url localhost default yang hanya bisa dijalankan di emulator ios
+    final url = 'http://localhost:8080/staff/$id';
+
     final uri = Uri.parse(url);
     try {
       final body = {
@@ -186,20 +194,6 @@ class _EditStaffPageState extends State<EditStaffPage> {
       // ignore: avoid_print
       print(e.toString());
     }
-    // final id = staff['id'];
-    // final nama = namaController.text;
-    // final posisi = posisiController.text;
-    // final shift = shiftController.text;
-    //
-    // final url = 'http://10.0.2.2:8080/staff/$id';
-    // final uri = Uri.parse(url);
-    // final response = await http.put(uri, body: jsonEncode(body));
-
-    // if (response.statusCode == 200) {
-    //   showSuccessMessage('Data berhasil diubah');
-    // } else {
-    //   showErrorMessage('Data gagal diubah');
-    // }
   }
 
   void showSuccessMessage(String message) {

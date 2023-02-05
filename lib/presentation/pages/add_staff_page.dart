@@ -160,7 +160,14 @@ class _AddStaffPageState extends State<AddStaffPage> {
       "posisi": posisi,
       "shift": shift,
     };
-    const url = 'http://10.0.2.2:8080/staff/';
+    //url localhost untuk emulator android
+    //const url = 'http://10.0.2.2:8080/staff/';
+
+    //url localhost untuk emulator ios
+    //const url = 'http://127.0.0.1:8080/staff/';
+
+    //url localhost default yang hanya bisa dijalankan di emulator ios
+    const url = 'http://localhost:8080/staff/';
     final uri = Uri.parse(url);
     final response = await http.post(uri, body: jsonEncode(body));
 

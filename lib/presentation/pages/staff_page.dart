@@ -134,7 +134,15 @@ class _StaffPageState extends State<StaffPage> {
   }
 
   Future<void> deleteById(id) async {
-    final url = 'http://10.0.2.2:8080/staff/$id';
+    //url localhost untuk emulator android
+    //final url = 'http://10.0.2.2:8080/staff/$id';
+
+    //url localhost untuk emulator ios
+    //final url = 'http://127.0.0.1:8080/staff/$id';
+
+    //url localhost default yang hanya bisa dijalankan di emulator ios
+    final url = 'http://localhost:8080/staff/$id';
+
     final uri = Uri.parse(url);
     final response = await http.delete(uri);
 
